@@ -131,7 +131,7 @@ def make_label_dict(l):
 ###file input and converts input in 2d list###
 ### calls the  functions for diff type of encoding and generates binary code ###
 label_comm=[]
-# with open("error-case4.txt","r") as file:
+# with open("error-case3.txt","r") as file:
     # assembly=file.readlines()
 # for line in sys.stdin:
 #     if "" == line.rstrip():
@@ -234,15 +234,19 @@ elif all_codes.index(['hlt'])!= len(all_codes)-1:
 if len(Errors)>0:
     if "Error in Line {len(variables)+assembly_code.index(i)+1}: Can't execute lines after hlt" in Errors:
         indi=Errors.index("Error in Line {len(variables)+assembly_code.index(i)+1}: Can't execute lines after hlt")
+        # print(Errors)
         for i in range(indi+1):
             # print(i)
             sys.stdout.write(i)
+            sys.stdout.write("\n")
     else:
+        # print(Errors)
         for i in Errors:
             # print(i)
             sys.stdout.write(i)
-
+            sys.stdout.write("\n")
 else:
     for i in binary:
         # print(i)
         sys.stdout.write(i)
+        sys.stdout.write("\n")
