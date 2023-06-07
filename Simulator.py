@@ -127,18 +127,19 @@ while (not halted):
             reg2=instruction[13::]
             if reg2==0:
                 overflowflag()
-                reg['R0']=0
-                reg['R1']=0
+            #     reg[0]=0
+            #     reg[1]=0
             else:
-                reg['R0']=reg1//reg2
-                reg['R1']=reg1%reg2
-            resetflagReg()
+            #     reg[0]=int(reg1)//int(reg2)
+            #     reg[1]=int(reg1)%int(reg2)
+                resetflagReg()
     elif(opcode=='01000'):
             #RShift instruction type-b
             reg1=instruction[6:9]
             r1=binarytodecimal(int(reg1))
             imm=instruction[9::]
-            reg[binarytodecimal(int(reg1))]=r1>>imm
+            # print(r1)
+            reg[binarytodecimal(int(reg1))]=int(r1)>>int(imm)
             resetflagReg()
     elif(opcode=='01001'):
             #LShift instruction type-b
@@ -154,7 +155,7 @@ while (not halted):
             reg2=binarytodecimal(instruction[10:13])##reg1=2(index)
             reg3=binarytodecimal(instruction[13::])
             x=reg[reg1]^reg[reg2]
-            reg[binarytodecimal(register.get(rx))]=0
+            reg[binarytodecimal(int(rx))]=0
             resetflagReg()
     elif(opcode=='01011'):
             #Or instruction type-A
@@ -188,7 +189,7 @@ while (not halted):
             reg1=reg[r1]
             reg2=reg[r2]
             if int(reg1)<int(reg2):
-                lessthanflag()
+                lessthanflag(r1)
             elif int(reg1)>int(reg2):
                 greaterthanflag()
             else:
