@@ -24,7 +24,11 @@ def type_A(l):
                 x=f"Error in Line {len(variables)+assembly_code.index(l)+1}: {l[0]} must contain 3 parameters"
                 Errors.append(x)
                 # print(x)
-                return 
+                return
+        elif l[1]=="FLAGS" or l[3]=="FLAGS" or l[2]=="FLAGS":
+             x= x=f"Error in Line {len(variables)+assembly_code.index(l)+1}: {l[0]} Illegal Use of FLAGS register"
+             Errors.append(x)
+             return
         else:
             a=opcode.get(l[0])
             r1=reg.get(l[1])
@@ -33,7 +37,7 @@ def type_A(l):
             str=a+'00'+r1+r2+r3
             return str
     except TypeError:
-        print("Wrong register used")
+        Errors.append("Wrong register used")
 
 def type_B(l):
     try:
@@ -70,6 +74,10 @@ def type_C(l):
                 if len(l)>3:
                     x=f"Error in Line {len(variables)+assembly_code.index(l)+1}: Can't move content to  2 registers"
                     Errors.append(x)
+                # elif l[1]=="FLAGS" or l[3]=="FLAGS" or l[2]=="FLAGS":
+                #     x= x=f"Error in Line {len(variables)+assembly_code.index(l)+1}: {l[0]} Illegal Use of FLAGS register"
+                #     Errors.append(x)
+                #     return
                 else:
                     a='00011'
                     r1=reg.get(l[1])
@@ -105,12 +113,12 @@ def type_D(l):
                 x=f"Error in Line {len(variables)+assembly_code.index(l)+1}: {l[0]} must contain 2 parameters"
                 Errors.append(x)
                 # print(x)
-                return 
+                return
         elif len(l)>3:
                 x=f"Error in Line {len(variables)+assembly_code.index(l)+1}: {l[0]} can't perform as more than 2 parameters"
                 Errors.append(x)
                 # print(x)
-                return 
+                return
         else:
             if l[2] not in variables:
                 x=f"Error in Line {all_codes.index(l)+1}: No such memory address exist "
